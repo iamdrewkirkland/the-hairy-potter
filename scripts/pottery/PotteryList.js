@@ -8,10 +8,10 @@ let temp = 0;
 //   inputDimensions();
 //   //prompt "Now let's fire it!"
 //   selectPottery(pottery);
-//   firePottery(selectedPottery);
+//   firePottery(selectedPottery, temp);
 // };
 
-const inputDimensions = () => {
+export const inputDimensions = () => {
   const shape = prompt("What shape is the pottery?");
   const weight = prompt("How heavy is the pottery?");
   const height = prompt("How tall is the pottery?");
@@ -29,19 +29,27 @@ const shapePottery = (shape, weight, height) => {
 
   pottery.push(newPotteryObject);
   potteryId++;
+  kilnSetup(pottery)
 };
 
 const kilnSetup = (potteryArray) => {
   potteryArray.map((pottery) => console.log(pottery.id && pottery.shape));
   let potteryNumber = parseInt(
-    prompt("Enter the number of the pottery piece you would like:", "1")
+    prompt("Enter the number of the pottery piece you would like", "1")
   );
   selectedPottery = potteryArray[potteryNumber + 1];
   temp = parseInt(prompt("Enter a temperature (intervals of 100)", "100"));
+  firePottery(selectedPottery, temp)
 };
 
-const firePottery = (potteryObject, temperature) => {
+const firePottery = (potteryObject, temp) => {
   if (temp > 2200) {
-      
+    potteryObject.cracked = true
+  } else {
+      potteryObject.cracked = false
   }
 };
+
+const evaluatePottery = (potteryArray) => {
+
+}
